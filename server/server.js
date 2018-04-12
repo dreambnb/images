@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/images/:location_id', (req, res) => {
-  
+  let location_id = req.params.location_id;
 })
 
 app.listen(port, () => {
