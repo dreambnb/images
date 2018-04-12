@@ -17,10 +17,10 @@ let Image = mongoose.model('Image', imageSchema);
 let get = function(location_id, cb) {
   Image.find({ location_id: location_id}).exec()
     .then((results) => {
-      console.log(results);  
+      cb(null, results); 
     })
     .catch((err) => {
-      console.log(err);
+      cb(err, null);
     });
 }
 
