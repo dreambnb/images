@@ -19,7 +19,7 @@ app.get('/images/:location_id', (req, res) => {
       res.end(err);
     } else {
       res.writeHead(200, {'Content-Type': 'application/json'});
-      res.end(JSON.stringify(results))
+      res.end(JSON.stringify(results));
     }
   });
 })
