@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 
+const db = require('./database/index.js');
+
 const app = express();
 const port = process.env.PORT || 8080;
 
@@ -11,7 +13,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/images/:location_id', (req, res) => {
-  let location_id = req.params.location_id;
+  db.get(req.params.location_id);
 })
 
 app.listen(port, () => {
