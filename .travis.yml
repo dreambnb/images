@@ -6,8 +6,8 @@ node_js:
   - 6
 before_script:
   - npm install 
-  - npm start
 script:
+  - npm start
   - npm test
   
   
