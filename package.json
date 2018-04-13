@@ -8,7 +8,8 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "nodemon server/server.js",
+    "start": "node server/server.js",
+    "dev:server": "nodemon server/server.js",
     "debug": "nodemon --inspect server/server.js",
     "test": "jest -e --forceExit --verbose",
     "lint": "eslint ./"
