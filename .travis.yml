@@ -7,7 +7,8 @@ node_js:
 before_script:
   - npm install 
 script:
-  - npm start
+  - npm start &
+  - sleep 1
   - npm test
   
   
