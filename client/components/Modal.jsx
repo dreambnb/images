@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from '../styles/style.css';
 
-const Modal = (props) => {
-  if (!props.isOpen) {
+const Modal = ({isOpen, children}) => {
+  if (!isOpen) {
     return null;
   }
   return (
-    <div id="modal" className={styles.modal} onClick={(e) => props.closeModal(e)}>
-      {props.children}
+    <div id="modal" className={styles.modal}>
+      {children}
     </div>
   );    
 };

@@ -8,14 +8,14 @@ module.exports = {
     filename: 'bundle.js',
     path: DIST_DIR
   },
-  module : {
-    rules : [
+  module: {
+    rules: [
       {
         test : /\.jsx?/,
         include : SRC_DIR,
         loader : 'babel-loader',      
         query: {
-          presets: ['react', 'es2015']
+          presets: ['react', 'env']
         }
       },
       {
@@ -33,6 +33,29 @@ module.exports = {
 						}
 					}
 				],
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/i, 
+        use: [
+          {
+            loader: 'url-loader',
+            options: {}
+          }
+        ]
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "babel-loader"
+          },
+          {
+            loader: "react-svg-loader",
+            options: {
+              jsx: true 
+            }
+          }
+        ]
       }
     ]
   }
