@@ -1,4 +1,9 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme'; 
+import ImageService from '../components/ImageService.jsx';
 
-import ImageService from '../components/ImageService';
+describe('Testing ImageService', () => {
+  test('Should be true', () =>{
+    expect(1).toBe(1);
+  })
+})
