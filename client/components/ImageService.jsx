@@ -49,11 +49,13 @@ class ImageService extends React.Component {
   }
 
   fetchNewImages(locationId) {
-    axios.get(`/images/${locationId}`)
+    return axios.get(`/images/${locationId}`)
       .then((results) => {
+        let allImagesLoaded = results.data.length === 0; //If no images are returned, then there is no point in waiting for images to load
         this.setState({
           images: results.data,
-          didFetch: true
+          didFetch: true,
+          allImagesLoaded: allImagesLoaded
         })
       })
       .catch((err) => {
@@ -95,13 +97,14 @@ class ImageService extends React.Component {
     return (
       <div className={style['main-image']}>
         <div>
-          {images.length === 0 || !allImagesLoaded 
-          ? <div className={style.background}><h1>The owner has not posted any pictures of this place yet!</h1></div>
-          : <div id="background" className={style.background} style={{backgroundImage: `url("${imgUrl}")`, cursor: 'pointer'}} onClick={(e) => this.openModal(e)}>
-              <div className={style['view-photos']}>
-                <button id="photos-button" className={style.button} onClick={(e) => this.openModal(e)}>View Photos</button>
+          {!allImagesLoaded ? <div className={style.background}><h1>Loading...</h1></div>
+          : images.length === 0 
+              ? <div id="no-images" className={style.background}><h1>The owner has not posted any pictures of this place yet!</h1></div>
+              : <div id="background" className={style.background} style={{backgroundImage: `url("${imgUrl}")`, cursor: 'pointer'}} onClick={(e) => this.openModal(e)}>
+                <div className={style['view-photos']}>
+                  <button id="photos-button" className={style.button} onClick={(e) => this.openModal(e)}>View Photos</button>
+                </div>
               </div>
-            </div>
           }
         </div>
         <div style={{display: 'none'}}>

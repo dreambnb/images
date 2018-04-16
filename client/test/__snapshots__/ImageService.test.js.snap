@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing ImageService Should render ImageService 1`] = `
+<div>
+  <div>
+    <div>
+      <h1>
+        Loading...
+      </h1>
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  />
+  <Modal
+    isOpen={false}
+  >
+    <LightBox
+      changeIndex={[Function]}
+      closeModal={[Function]}
+      curImageIndex={0}
+      images={Array []}
+    />
+  </Modal>
+</div>
+`;
