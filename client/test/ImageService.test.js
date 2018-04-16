@@ -35,7 +35,7 @@ describe('Testing ImageService', () => {
     );
     await flushPromises();
     ImageServiceWrapper.update();
-    ImageServiceWrapper.setState({ allImagesLoaded: true }) //Can't execute onLoad function of images during test so we'll assume they've been loaded
+    ImageServiceWrapper.setState({ allImagesLoaded: true }) //Can't execute onLoad function of images during test so we'll assume they've been loaded 
     expect(ImageServiceWrapper.find('#no-images')).toHaveLength(0);
     expect(ImageServiceWrapper.find('#background')).toHaveLength(1);
   })

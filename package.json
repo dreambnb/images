@@ -13,7 +13,7 @@
     "dev:client": "webpack -d --watch",
     "dev:server": "nodemon server/server.js",
     "debug": "nodemon --inspect server/server.js",
-    "test": "jest -e --forceExit --verbose --updateSnapshot",
+    "test": "jest -e --forceExit --verbose --updateSnapshot --coverage",
     "lint": "eslint ./"
   },
   "dependencies": {

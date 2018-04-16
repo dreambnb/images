@@ -16,9 +16,7 @@ const LightBox = ({images, curImageIndex, closeModal, changeIndex}) => {
 
   return (
     <div id="backdrop" className={styles['lightbox-container']} onClick={(e) => onModalClick(e)}>
-      <div className={styles['image-container']}>
-        <img src={curImage.src} className={styles['display-image']} align="middle"/>
-      </div>
+      <img src={curImage.src} className={styles['display-image']} align="middle"/>
     </div>
   );
 }

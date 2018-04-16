@@ -11,7 +11,6 @@ class ImageService extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      didFetch: false,
       openModal: false,
       allImagesLoaded: false,
       imageCount: 0,
@@ -42,6 +41,7 @@ class ImageService extends React.Component {
     }
     imageCount++;
     allImagesLoaded = imageCount === images.length;
+    console.log('Images loaded: ' + allImagesLoaded);
     this.setState({
       imageCount: imageCount,
       allImagesLoaded: allImagesLoaded
@@ -90,9 +90,8 @@ class ImageService extends React.Component {
   }
 
   render() {
-    let {images, imageCount, didFetch, allImagesLoaded, openModal, curImageIndex} = this.state;
+    let {images, imageCount, allImagesLoaded, openModal, curImageIndex} = this.state;
     console.log(this.state.images);
-    console.log(this.state.didFetch);
     let imgUrl = images.length > 0 ? images[0].src : null;
     return (
       <div className={style['main-image']}>
