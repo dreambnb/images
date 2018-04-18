@@ -52,8 +52,8 @@ body {
 .display-image {
 	position: absolute;
 	margin: auto;
-	height: 500px;
-	max-width: 800px;
+	height: 460px;
+	max-width: 760px;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -73,4 +73,74 @@ body {
 	-moz-box-sizing: border-box;
 }
 
+.gallery-nav {
+	cursor: pointer;
+	position: relative;
+	margin: auto;
+	height: 100%;
+	width: 200px;
+	display: inline-block;
+	vertical-align: middle;
+	z-index: 4;
+	background-color: rgba(0,0,0,0);
+	border: 0px;
+	outline: none;
+}
+
+.nav-left {
+	composes: gallery-nav;
+	float: left;
+}
+
+.nav-right {
+	composes: gallery-nav;
+	float: right;
+}
+
+.nav-icon {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	vertical-align: middle;
+	height: 80px;
+	width: 80px;
+	margin: auto;
+	line-height: 1;
+}
+
+.lightbox-bottom {
+	bottom: 0;
+	z-index: 6;
+	position: absolute;
+	overflow-y: hidden;
+	width: 100%;
+	height: 120px;
+}
+
+.slider-container {
+	top: 30px;
+	position: relative;
+	width: 770px;
+	height: 70px;
+	margin: auto;
+	text-align: center;
+}
+
+.thumbnail-frame {
+	position: relative;
+	padding: 4px;
+	height: 67px;
+	width: 100px;
+	display: inline-block;
+}
+
+.thumbnail:hover {
+	filter: brightness(100%);
+}
+
+.thumbnail {
+	filter: brightness(50%);
+	height: 100%;
+	width: 100%;
+}
 

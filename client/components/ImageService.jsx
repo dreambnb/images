@@ -5,22 +5,29 @@ import _ from 'lodash';
 import Modal from './Modal.jsx';
 import LightBox from './LightBox.jsx';
 
-import style from "../styles/style.css";
+import style from '../styles/style.css';
+import fillerData from './fillerData.js';
 
 class ImageService extends React.Component {
   constructor(props) {
     super(props);
+    let exampleData = [];
+    if (this.props.locationId === 34) {
+      exampleData = fillerData;
+    }
     this.state = {
       openModal: false,
       allImagesLoaded: false,
       imageCount: 0,
       curImageIndex: 0,
-      images: []
+      images: [],
+      exampleData: exampleData
     }
     this.fetchNewImages = this.fetchNewImages.bind(this);
     this.onImageLoad = this.onImageLoad.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.changeIndex = this.changeIndex.bind(this);
   }
 
   componentDidMount() {
@@ -52,8 +59,14 @@ class ImageService extends React.Component {
     return axios.get(`/images/${locationId}`)
       .then((results) => {
         let allImagesLoaded = results.data.length === 0; //If no images are returned, then there is no point in waiting for images to load
+        let images = results.data.concat(this.state.exampleData);
+        let index = 0;
+        _.forEach(images, (image) => {
+          image.index = index;
+          index++;
+        })
         this.setState({
-          images: results.data,
+          images: results.data.concat(this.state.exampleData),
           didFetch: true,
           allImagesLoaded: allImagesLoaded
         })
@@ -84,6 +97,11 @@ class ImageService extends React.Component {
   }
 
   changeIndex(index) {
+    if (index < 0) {
+      index = this.state.images.length-1;
+    } else if (index >= this.state.images.length) {
+      index = 0;
+    }
     this.setState({
       curImageIndex: index
     })
