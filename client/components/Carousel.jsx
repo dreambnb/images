@@ -4,7 +4,7 @@ import {
   TransitionGroup
 } from 'react-transition-group';
 
-import styles from '../styles/style.css';
+import styles from '../styles/carousel-style.css';
 
 const Carousel = ({images, changeIndex, curImageIndex}) => {
   const IMAGES_TO_SHOW = 7;

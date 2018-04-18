@@ -9,13 +9,6 @@ exports[`Testing ImageService Should render ImageService 1`] = `
       </h1>
     </div>
   </div>
-  <div
-    style={
-      Object {
-        "display": "none",
-      }
-    }
-  />
   <Modal
     isOpen={false}
   >
@@ -24,7 +17,15 @@ exports[`Testing ImageService Should render ImageService 1`] = `
       closeModal={[Function]}
       curImageIndex={0}
       images={Array []}
+      key="LightBox"
     />
   </Modal>
+  <div
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  />
 </div>
 `;

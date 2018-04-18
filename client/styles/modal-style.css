@@ -1,0 +1,29 @@
+.modal-wrapper {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 3;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0,0,0,0.8);
+  cursor: pointer;
+  opacity: 1;
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: all 250ms ease-out;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0.01;
+  transition: all 250ms ease-out;
+}

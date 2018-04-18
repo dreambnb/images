@@ -1,0 +1,27 @@
+.slider-container {
+	top: 10px;
+	position: relative;
+	width: 770px;
+	height: 80px;
+	margin: auto;
+	text-align: center;
+}
+
+.thumbnail-frame {
+	position: relative;
+	padding: 5px;
+	height: 67px;
+	width: 100px;
+	display: inline-block;
+}
+
+.thumbnail:hover {
+	filter: brightness(100%);
+}
+
+.thumbnail {
+	filter: brightness(40%);
+	height: 100%;
+	width: 100%;
+	cursor: pointer;
+}
