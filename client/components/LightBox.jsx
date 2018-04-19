@@ -3,9 +3,10 @@ import React from 'react';
 import Carousel from './Carousel.jsx';
 
 import styles from '../styles/lightbox-style.css';
-import arrowRight from '../icons/arrow-right.png';
-import arrowLeft from '../icons/arrow-left.png';
+import arrowRight from '../icons/arrow-right.jsx';
+import arrowLeft from '../icons/arrow-left.jsx';
 import popupArrow from '../icons/popup-arrow.png';
+import close from '../icons/close.jsx';
 
 class LightBox extends React.Component {
   constructor(props) {
@@ -16,15 +17,7 @@ class LightBox extends React.Component {
     this.togglePhotoList = this.togglePhotoList.bind(this);
   }
 
-  onModalClick(e) {
-    let backdrop = document.getElementById('backdrop');
-    if (e.target === backdrop) {
-      this.props.closeModal();
-    }
-  }
-
   togglePhotoList(keepOpen) {
-
     this.setState({
       listOpen: keepOpen || !this.state.listOpen
     })
@@ -35,9 +28,14 @@ class LightBox extends React.Component {
     let { images, curImageIndex, closeModal, changeIndex } = this.props;
     let curImage = images[curImageIndex];
     return (
-      <div id="backdrop" className={styles['lightbox-container']} onClick={(e) => this.onModalClick(e)}>
+      <div id="backdrop" className={styles['lightbox-container']}>
+        <button id="close-backdrop" className={styles['close-lightbox']} onClick={closeModal}>
+          {close}
+        </button>
         <button id="prev" className={styles['nav-left']} onClick={() => changeIndex(--curImageIndex)}>
-          <img className={styles['nav-icon']} src={arrowLeft} style={{left: 0}}/>
+          <div className={styles['nav-icon']} style={{left: 0}}>
+            {arrowLeft}
+          </div>
         </button>
         <img 
           key={curImageIndex} 
@@ -47,7 +45,9 @@ class LightBox extends React.Component {
           onClick={() => changeIndex(++curImageIndex)}
         />
         <button id="next" className={styles['nav-right']} onClick={() => changeIndex(++curImageIndex)}>
-          <img className={styles['nav-icon']} src={arrowRight} style={{right: 0}}/>
+          <div className={styles['nav-icon']} style={{right: 0}}>
+            {arrowRight}
+          </div>
         </button>
         <div id="lightbox-bottom" className={styles['lightbox-bottom']} onMouseEnter={() => this.togglePhotoList(true)}>
           <div className={styles[`photo-list-${this.state.listOpen ? 'up' : 'down'}`]}>
@@ -56,7 +56,13 @@ class LightBox extends React.Component {
               <span style={{float: 'right'}}>
                 <button id="photo-list-button" className={styles['photo-list-button']} onClick={() => this.togglePhotoList()}>
                   <span>{`${this.state.listOpen ? 'Hide' : 'Show'} photo list`}</span>
-                  <span style={{ marginLeft: '1px'}}><img height="10px" src={popupArrow}/></span>
+                  <span style={{marginLeft: '1px', height: '10px', width: '10px'}}>
+                    <div className={styles['popup-arrow']}>
+                      <img 
+                        className={styles[`popup-icon-${this.state.listOpen ? 'down' : 'up'}`]} 
+                        height="10px" width="10px" src={popupArrow}/>
+                    </div>
+                  </span>
                 </button>
               </span>
             </div>
