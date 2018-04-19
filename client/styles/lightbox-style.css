@@ -1,5 +1,5 @@
 .font-caption {
-	font-family: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 15px;
 }
 
@@ -14,7 +14,7 @@
 	position: absolute;
 	margin: auto;
 	height: 460px;
-	width: 760px;
+	width: 755px;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -61,11 +61,14 @@
 }
 
 .lightbox-bottom {
+  z-index: 6;
 	bottom: 10px;
-	z-index: 6;
 	position: absolute;
-	overflow-y: hidden;
-	width: 100%;
+	overflow: hidden;
+  width: 760px;
+  left: 0;
+  right: 0;
+  margin: auto;
 	height: 100px;
 }
 
@@ -74,7 +77,8 @@
 	color: white;
 	width: 760px;
 	height: 20px;
-	margin: auto;
+  margin: auto;
+  transform: translateX(2.5px);
 }
 
 .photo-list-button {

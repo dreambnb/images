@@ -3,7 +3,6 @@ import React from 'react';
 import Carousel from './Carousel.jsx';
 
 import styles from '../styles/lightbox-style.css';
-
 import arrowRight from '../icons/arrow-right.png';
 import arrowLeft from '../icons/arrow-left.png';
 import popupArrow from '../icons/popup-arrow.png';

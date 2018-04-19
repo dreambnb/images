@@ -1,56 +1,48 @@
 import React from 'react';
-import {
-  CSSTransition,
-  TransitionGroup
-} from 'react-transition-group';
+import Slider from 'react-slick';
 
-import styles from '../styles/carousel-style.css';
+import styles from '../styles/carousel-test-style.css';
 
-const Carousel = ({images, changeIndex, curImageIndex}) => {
-  const IMAGES_TO_SHOW = 7;
- 
-  const rotateArray = (images, curImageIndex) => {
-    let result = {};
-    if (images.length <= IMAGES_TO_SHOW) {
-      result.displayedImages = images;
-      result.highlightIndex = curImageIndex;
-      return result;
-    }
-    if (curImageIndex <= 3) {
-      result.displayedImages = JSON.parse(JSON.stringify(images.slice(0, IMAGES_TO_SHOW)));
-      result.highlightIndex = curImageIndex;
-      return result;
-    }
-    if (curImageIndex >= images.length - 4) {
-      result.displayedImages = JSON.parse(JSON.stringify(images.slice(images.length - IMAGES_TO_SHOW)));
-      let indicesToEnd = images.length - curImageIndex - 1; // Calculate how many positions the image is from the end;
-      result.highlightIndex = IMAGES_TO_SHOW - indicesToEnd - 1;
-      return result;
-    }
-    result.displayedImages = [];
-    for (let i = -3; i <= 3; i++) {
-      result.displayedImages.push(images[curImageIndex+i]);
-    }
-    result.highlightIndex = 3;
-    return result;
+// Trying to get react-slick to work in the carousel
+
+class Carousel extends React.Component {
+  componentDidUpdate() {
+    this.slider.slickGoTo(this.props.curImageIndex); 
   }
 
-  let { displayedImages, highlightIndex } = rotateArray(images, curImageIndex); //Rotates array so that current image is in middle
-  console.log(displayedImages);
-  return (
-    <div id="slider-container" className={styles['slider-container']}>
-        {displayedImages.map((image, index) => 
-          <div className={styles['thumbnail-frame']}>
-            <img 
-              className={styles['thumbnail']} 
-              src={image.src} 
-              style={{filter: index === highlightIndex ? 'brightness(100%)' : null}}
-              onClick={() => changeIndex(image.index)}
-            />
+  render() {
+    let { images, changeIndex, curImageIndex } = this.props;
+    let settings = {
+      slidesToShow: 7, 
+      slidesToScroll: 1,
+      arrows: false,
+      infinite: true,
+      dots: false, 
+      centerMode: true, 
+      focusOnSelect: true, 
+      className: styles['slider']
+    };
+
+    return (
+      <div id="slider-container" className={styles['slider-container']}>
+        <Slider ref={slider => (this.slider = slider)} {...settings}>
+          {images.map((image, index) => 
+          <div className={styles['slide']}>
+            <div key={index} className={styles['thumbnail-frame']}>
+              <img 
+                id={`Image ${index}`}
+                className={styles['thumbnail']} 
+                src={image.src} 
+                style={{filter: index === curImageIndex ? 'brightness(100%)' : null}}
+                onClick={() => changeIndex(index)}
+              />
+            </div>
           </div>
-        )}
-    </div>
-  );
-};
+          )}
+        </Slider>
+      </div>
+    );
+  }
+}
 
 export default Carousel;
