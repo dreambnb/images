@@ -24,7 +24,6 @@ class LightBox extends React.Component {
   }
 
   render() {
-    console.log('List open:' + this.state.listOpen)
     let { images, curImageIndex, closeModal, changeIndex } = this.props;
     let curImage = images[curImageIndex];
     return (
@@ -38,6 +37,7 @@ class LightBox extends React.Component {
           </div>
         </button>
         <img 
+          id="display-image"
           key={curImageIndex} 
           src={curImage.src} 
           className={styles['display-image']} 

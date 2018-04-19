@@ -71,11 +71,7 @@ class ImageService extends React.Component {
       });
   }
 
-  openModal(e) {
-    console.log(e.target)
-    if (e.target !== this.background && e.target !== this.photosButton) {
-      return;
-    }
+  openModal() {
     document.body.style.overflow = "hidden";
     this.setState({
       openModal: true
@@ -102,7 +98,6 @@ class ImageService extends React.Component {
 
   render() {
     let {images, imageCount, allImagesLoaded, openModal, curImageIndex} = this.state;
-    console.log(this.state.images);
     let imgUrl = images.length > 0 ? images[0].src : null;
     return (
       <div className={style['main-image']}>
@@ -113,12 +108,12 @@ class ImageService extends React.Component {
               : <div id="background" ref={background => (this.background = background)} 
                   className={style['background']} 
                   style={{backgroundImage: `url("${imgUrl}")`, cursor: 'pointer'}} 
-                  onClick={(e) => this.openModal(e)}>
+                  onClick={this.openModal}>
                   <div className={style['view-photos']}>
                     <button ref={photosButton => (this.photosButton = photosButton)} 
                       id="photos-button" 
                       className={style['button']} 
-                      onClick={(e) => this.openModal(e)}
+                      onClick={this.openModal}
                     >
                       View Photos
                     </button>

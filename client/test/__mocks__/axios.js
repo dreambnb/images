@@ -1,4 +1,4 @@
-import { images3, images5 } from './exampleData.json';
+import { images3, images5 } from '../exampleData.json';
 
 const IMAGES_ENDPOINT_3 = '/images/3';
 const IMAGES_ENDPOINT_5 = '/images/5';

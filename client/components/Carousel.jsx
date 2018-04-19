@@ -3,11 +3,13 @@ import Slider from 'react-slick';
 
 import styles from '../styles/carousel-style.css';
 
-// Trying to get react-slick to work in the carousel
-
 class Carousel extends React.Component {
   componentDidUpdate() {
-    this.slider.slickGoTo(this.props.curImageIndex); 
+    this.goToIndex(this.props.curImageIndex);
+  }
+  
+  goToIndex(curImageIndex) {
+    this.slider.slickGoTo(curImageIndex);
   }
 
   render() {
