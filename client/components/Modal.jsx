@@ -14,7 +14,7 @@ const Modal = ({isOpen, children}) => {
   return (
     <div>
       <TransitionGroup>
-        <CSSTransition classNames={transitions} timeout={250} key={isOpen}>
+        <CSSTransition classNames={transitions} timeout={200} key={isOpen}>
           {isOpen ? 
             <div id="modal" className={style['modal-wrapper']}>
               {children}

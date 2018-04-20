@@ -11,7 +11,7 @@ class Carousel extends React.Component {
   goToIndex(curImageIndex, images) {
     if (curImageIndex <= 3) {
       this.slider.slickGoTo(0);
-    } else if (curImageIndex >- images.length-4) {
+    } else if (curImageIndex > images.length-4) {
       this.slider.slickGoTo(images.length-7);
     } else {
       this.slider.slickGoTo(curImageIndex-3);
@@ -30,8 +30,13 @@ class Carousel extends React.Component {
       className: styles['slider']
     };
 
+    let slideOffSet = -2.5;
+    if (images.length < 7) {
+      slideOffSet = 54.5 * (7 - images.length);
+    }
     return (
-      <div id="slider-container" className={styles['slider-container']}>
+      <div id="slider-container" className={styles['slider-container']} 
+        style={{transform: `translate(${slideOffSet}px)`}}>
         <Slider ref={slider => (this.slider = slider)} {...settings}>
           {images.map((image, index) => 
           <div key={index} className={styles['slide']}>

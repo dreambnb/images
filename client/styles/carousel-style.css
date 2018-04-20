@@ -5,7 +5,6 @@
   width: 760px;
   margin: auto;
   text-align: center;
-  transform: translateX(-2.5px);
 }
 
 .thumbnail:hover {
