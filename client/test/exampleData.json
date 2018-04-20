@@ -1,0 +1,46 @@
+{
+  "images3": [
+    {
+      "location_id": 3,
+      "caption": "I'm an example!", 
+      "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg"
+    },
+    {
+      "location_id": 3,
+      "caption": "I'm another example!", 
+      "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg"
+    },
+    {
+      "location_id": 3,
+      "caption": "I'm an example!", 
+      "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg"
+    },
+    {
+      "location_id": 3,
+      "caption": "I'm another example!", 
+      "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg"
+    },
+    {
+      "location_id": 3,
+      "caption": "I'm an example!", 
+      "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg"
+    },
+    {
+      "location_id": 3,
+      "caption": "I'm another example!", 
+      "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg"
+    }
+  ],
+  "images5": [
+    {
+      "location_id": 5,
+      "caption": "I'm an example!", 
+      "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg"
+    },
+    {
+      "location_id": 5,
+      "caption": "I'm another example!", 
+      "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg"
+    }
+  ] 
+}

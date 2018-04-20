@@ -1,0 +1,208 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing LightBox Should render LightBox 1`] = `
+<div
+  id="backdrop"
+>
+  <button
+    id="close-backdrop"
+  >
+    <svg
+      fill="#ffffff"
+      height="50px"
+      version="1.1"
+      viewBox="0 0 50 50"
+      width="50px"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g
+        fill="#ffffff"
+        id="surface1"
+      >
+        <path
+          d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z "
+          fill="#ffffff"
+        />
+      </g>
+    </svg>
+  </button>
+  <button
+    id="prev"
+    onClick={[Function]}
+  >
+    <div
+      style={
+        Object {
+          "left": 0,
+        }
+      }
+    >
+      <svg
+        height="80px"
+        id="Capa_1"
+        style={
+          Object {
+            "enableBackground": "new 0 0 377.406 377.406",
+          }
+        }
+        version="1.1"
+        viewBox="0 0 377.406 377.406"
+        width="80px"
+        x="0px"
+        xmlns="http://www.w3.org/2000/svg"
+        y="0px"
+      >
+        <g
+          transform="matrix(1 0 0 1 0 0)"
+        >
+          <g>
+            <path
+              className="active-path"
+              d="M270.652,373.981c11.583,10.618,27.993-5.792,17.375-17.375C230.11,300.62,173.159,244.633,115.242,188.647   C173.159,132.661,230.11,76.675,288.027,20.688c11.583-10.618-5.792-27.993-17.375-17.375   C209.839,62.195,149.027,121.078,89.179,179.96c-4.826,4.826-4.826,12.549,0,17.375   C149.027,256.217,209.839,315.099,270.652,373.981z"
+              data-old_color="#150B0B"
+              data-original="#000000"
+              fill="#FFFFFF"
+            />
+          </g>
+        </g>
+      </svg>
+    </div>
+  </button>
+  <img
+    align="middle"
+    id="display-image"
+    key="0"
+    onClick={[Function]}
+    src="http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg"
+  />
+  <button
+    id="next"
+    onClick={[Function]}
+  >
+    <div
+      style={
+        Object {
+          "right": 0,
+        }
+      }
+    >
+      <svg
+        height="80px"
+        id="Capa_1"
+        style={
+          Object {
+            "enableBackground": "new 0 0 377.406 377.406",
+          }
+        }
+        version="1.1"
+        viewBox="0 0 377.406 377.406"
+        width="80px"
+        x="0px"
+        xmlns="http://www.w3.org/2000/svg"
+        y="0px"
+      >
+        <g
+          transform="matrix(-1 0 0 1 377.406 0)"
+        >
+          <g>
+            <path
+              className="active-path"
+              d="M270.652,373.981c11.583,10.618,27.993-5.792,17.375-17.375C230.11,300.62,173.159,244.633,115.242,188.647   C173.159,132.661,230.11,76.675,288.027,20.688c11.583-10.618-5.792-27.993-17.375-17.375   C209.839,62.195,149.027,121.078,89.179,179.96c-4.826,4.826-4.826,12.549,0,17.375   C149.027,256.217,209.839,315.099,270.652,373.981z"
+              data-old_color="#FBFAFA"
+              data-original="#000000"
+              fill="#FFFFFF"
+            />
+          </g>
+        </g>
+      </svg>
+    </div>
+  </button>
+  <div
+    id="lightbox-bottom"
+    onMouseEnter={[Function]}
+  >
+    <div>
+      <div
+        id="photo-list-header"
+      >
+        <span
+          id="caption"
+        >
+          1/6: I'm an example!
+        </span>
+        <span
+          style={
+            Object {
+              "float": "right",
+            }
+          }
+        >
+          <button
+            id="photo-list-button"
+            onClick={[Function]}
+          >
+            <span>
+              Hide photo list
+            </span>
+            <span
+              style={
+                Object {
+                  "height": "10px",
+                  "marginLeft": "1px",
+                  "width": "10px",
+                }
+              }
+            >
+              <div>
+                <img
+                  height="10px"
+                  src={Object {}}
+                  width="10px"
+                />
+              </div>
+            </span>
+          </button>
+        </span>
+      </div>
+      <Carousel
+        changeIndex={[Function]}
+        curImageIndex={0}
+        images={
+          Array [
+            Object {
+              "caption": "I'm an example!",
+              "location_id": 3,
+              "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg",
+            },
+            Object {
+              "caption": "I'm another example!",
+              "location_id": 3,
+              "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg",
+            },
+            Object {
+              "caption": "I'm an example!",
+              "location_id": 3,
+              "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg",
+            },
+            Object {
+              "caption": "I'm another example!",
+              "location_id": 3,
+              "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg",
+            },
+            Object {
+              "caption": "I'm an example!",
+              "location_id": 3,
+              "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg",
+            },
+            Object {
+              "caption": "I'm another example!",
+              "location_id": 3,
+              "src": "http://assets1.ignimgs.com/2018/02/26/spongebob-blogroll-1519673777353_1280w.jpg",
+            },
+          ]
+        }
+      />
+    </div>
+  </div>
+</div>
+`;
