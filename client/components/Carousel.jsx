@@ -5,11 +5,17 @@ import styles from '../styles/carousel-style.css';
 
 class Carousel extends React.Component {
   componentDidUpdate() {
-    this.goToIndex(this.props.curImageIndex);
+    this.goToIndex(this.props.curImageIndex, this.props.images);
   }
   
-  goToIndex(curImageIndex) {
-    this.slider.slickGoTo(curImageIndex);
+  goToIndex(curImageIndex, images) {
+    if (curImageIndex <= 3) {
+      this.slider.slickGoTo(0);
+    } else if (curImageIndex >- images.length-4) {
+      this.slider.slickGoTo(images.length-7);
+    } else {
+      this.slider.slickGoTo(curImageIndex-3);
+    }
   }
 
   render() {
@@ -20,8 +26,7 @@ class Carousel extends React.Component {
       arrows: false,
       infinite: true,
       dots: false, 
-      centerMode: true, 
-      focusOnSelect: true, 
+      centerMode: false,
       className: styles['slider']
     };
 
