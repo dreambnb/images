@@ -1,5 +1,5 @@
 .font-caption {
-	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: 'Circular', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 15px;
 }
 
@@ -14,7 +14,8 @@
   composes: invisible-button;
   position: absolute;
   top: 10px;
-  right: 10px;
+	right: 10px;
+	padding: 10px;
   z-index: 6;
 }
 
@@ -29,13 +30,13 @@
 	position: absolute;
 	margin: auto;
 	height: 460px;
-	width: 755px;
+	max-width: 755px;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
   cursor: pointer;
-  animation: 500ms;
+  animation: 300ms;
   animation-name: fadein;
   will-change: transform, opacity;
 }
@@ -128,42 +129,44 @@
 .photo-list-up {
 	animation: 300ms;
 	animation-name: slideup;
-	margin-top: 0px;
+	transform: translateY(0px);
 }
 
 .photo-list-down {
 	animation: 300ms;
 	animation-name: slidedown;
-	margin-top: 70px;
+	transform: translateY(70px);
 }
 
 @keyframes slideup {
 	from {
-		margin-top: 70px;
+		transform: translateY(70px);
 	}
 
 	to {
-		margin-top: 0px;
+		transform: translateY(0px);
 	}
 }
 
 @keyframes slidedown {
 	from {
-		margin-top: 0px;
+		transform: translateY(0px);
 	}
 
 	to {
-		margin-top: 70px;
+		transform: translateY(70px);
 	}
 }
 
 @keyframes fadein {
   from {
-    opacity: 0.01;
+		opacity: 0.01;
+		transform: translateX(10px);
   }
 
   to {
-    opacity: 1;
+		opacity: 1;
+		transform: translateX(0px);
   }
 }
 

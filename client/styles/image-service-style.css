@@ -44,3 +44,17 @@ body {
 	left: 20px;
 	margin: auto;
 }
+
+.buttons-top {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	z-index: 8;
+	margin: auto;
+}
+
+.icon-span {
+	margin-right: 7px;
+	transform: translateY(1px);
+	float: left;
+}

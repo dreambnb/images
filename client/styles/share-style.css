@@ -1,0 +1,37 @@
+.share-container {
+  cursor: default;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+}
+
+.share-page {
+  height: 700px;
+  width: 420px; /*Totally unintentional*/
+  margin: auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+    0 6px 20px 0 rgba(0, 0, 0, 0.19), 
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.content {
+  height: 640px;
+  width: 300px;
+  margin: auto;
+  transform: translateY(60px);
+}
+
+.invisible-button {
+  background: rgba(0,0,0,0);
+  border: 0px;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: #484848;
+  font-weight: 100;
+}

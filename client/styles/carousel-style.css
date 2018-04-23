@@ -2,10 +2,9 @@
 	top: 10px;
 	position: relative;
   height: 70px;
-  width: 860px;
+  width: 760px;
   margin: auto;
   text-align: center;
-  transform: translateX(-2.5px);
 }
 
 .thumbnail:hover {
@@ -13,11 +12,12 @@
 }
 
 .slider {
-  transform: translateX(-50px);
+  transform: translateX(5px);
 }
 
 .slide {
   position: relative;
+  outline: none;
 }
 
 .thumbnail {
@@ -28,5 +28,5 @@
 }
 
 .thumbnail-frame {
-  margin: 5px;
+  margin: 0px;
 }

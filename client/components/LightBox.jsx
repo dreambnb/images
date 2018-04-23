@@ -27,8 +27,8 @@ class LightBox extends React.Component {
     let { images, curImageIndex, closeModal, changeIndex } = this.props;
     let curImage = images[curImageIndex];
     return (
-      <div id="backdrop" className={styles['lightbox-container']}>
-        <button id="close-backdrop" className={styles['close-lightbox']} onClick={closeModal}>
+      <div id="lightbox-container" className={styles['lightbox-container']}>
+        <button id="close-lightbox" className={styles['close-lightbox']} onClick={closeModal}>
           {close}
         </button>
         <button id="prev" className={styles['nav-left']} onClick={() => changeIndex(--curImageIndex)}>
