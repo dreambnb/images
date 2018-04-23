@@ -78,9 +78,10 @@ class ImageService extends React.Component {
   openModal(e) {
     document.body.style.overflow = "hidden";
     let modalChild = 'LightBox';
-    if (e.target === this.save) {
+    console.log(e.target)
+    if (this.save.contains(e.target)) {
       modalChild = 'Save';
-    } else if (e.target === this.share) {
+    } else if (this.share.contains(e.target)) {
       modalChild = 'Share';
     }
     this.setState({
