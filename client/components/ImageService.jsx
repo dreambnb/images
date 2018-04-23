@@ -31,7 +31,6 @@ class ImageService extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.locationId);
     this.fetchNewImages(this.props.locationId);
   }
 
@@ -48,7 +47,7 @@ class ImageService extends React.Component {
     }
     imageCount++;
     allImagesLoaded = imageCount === images.length;
-    console.log('Images loaded: ' + allImagesLoaded);
+
     this.setState({
       imageCount: imageCount,
       allImagesLoaded: allImagesLoaded
@@ -78,7 +77,7 @@ class ImageService extends React.Component {
   openModal(e) {
     document.body.style.overflow = "hidden";
     let modalChild = 'LightBox';
-    console.log(e.target)
+  
     if (this.save.contains(e.target)) {
       modalChild = 'Save';
     } else if (this.share.contains(e.target)) {
@@ -91,8 +90,8 @@ class ImageService extends React.Component {
   }
 
   closeModal() {
-    console.log('close modal')
     document.body.style.overflow = "initial";
+
     this.setState({
       openModal: false
     })
@@ -141,7 +140,7 @@ class ImageService extends React.Component {
   render() {
     let {images, imageCount, allImagesLoaded, openModal, curImageIndex, modalChild} = this.state;
     let imgUrl = images.length > 0 ? images[0].src : null;
-    console.log(modalChild);
+    
     return (
       <div className={styles['main-image']}>
         <div>
