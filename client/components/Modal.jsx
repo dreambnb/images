@@ -1,22 +1,24 @@
 import React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-import style from '../styles/modal-style.css';
+import styles from '../styles/modal-style.css';
 
-const Modal = ({isOpen, children}) => {
+const Modal = ({isOpen, children, color}) => {
   
   const transitions = {
-    enter: style['fade-enter'],
-    enterActive: style['fade-enter-active'],
-    exit: style['fade-exit'],
-    exitActive: style['fade-exit-active']
+    enter: styles['fade-enter'],
+    enterActive: styles['fade-enter-active'],
+    exit: styles['fade-exit'],
+    exitActive: styles['fade-exit-active']
   }
   return (
     <div>
       <TransitionGroup>
         <CSSTransition classNames={transitions} timeout={200} key={isOpen}>
           {isOpen ? 
-            <div id="modal" className={style['modal-wrapper']}>
+            <div id="modal" 
+              className={styles['modal-wrapper']} 
+              style={{backgroundColor: color}}>
               {children}
             </div>
             : <div></div>

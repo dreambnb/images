@@ -22,7 +22,7 @@ class Carousel extends React.Component {
     let { images, changeIndex, curImageIndex } = this.props;
     let settings = {
       slidesToShow: 7, 
-      slidesToScroll: 1,
+      slidesToScroll: 5,
       arrows: false,
       infinite: true,
       dots: false, 

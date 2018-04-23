@@ -1,6 +1,7 @@
 import React from 'react';
 import ImageService from '../components/ImageService.jsx';
 import sinon from 'sinon';
+
 import { images3 } from './exampleData.json'
 
 const flushPromises = () => new Promise(resolve => setImmediate(resolve));
@@ -77,7 +78,7 @@ describe('Testing ImageService', () => {
       images: images3,
       openModal: false
     });
-    ImageServiceWrapper.instance().openModal();
+    ImageServiceWrapper.instance().openModal({target: 'none'}); // Mock event object, for testing purposes
     ImageServiceWrapper.update();
     let openModal = ImageServiceWrapper.state().openModal;
     expect(openModal).toBe(true);
@@ -86,5 +87,4 @@ describe('Testing ImageService', () => {
     openModal = ImageServiceWrapper.state().openModal;
     expect(openModal).toBe(false);
   })
-
 })

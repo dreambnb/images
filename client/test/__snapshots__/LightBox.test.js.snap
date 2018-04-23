@@ -2,10 +2,10 @@
 
 exports[`Testing LightBox Should render LightBox 1`] = `
 <div
-  id="backdrop"
+  id="lightbox-container"
 >
   <button
-    id="close-backdrop"
+    id="close-lightbox"
   >
     <svg
       fill="#ffffff"

@@ -10,16 +10,9 @@ exports[`Testing ImageService Should render ImageService 1`] = `
     </div>
   </div>
   <Modal
+    color="rgba(0,0,0,0.8)"
     isOpen={false}
-  >
-    <LightBox
-      changeIndex={[Function]}
-      closeModal={[Function]}
-      curImageIndex={0}
-      images={Array []}
-      key="LightBox"
-    />
-  </Modal>
+  />
   <div
     style={
       Object {
