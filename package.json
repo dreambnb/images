@@ -16,6 +16,7 @@
     "test": "jest -e --forceExit --verbose --updateSnapshot --coverage",
     "lint": "eslint ./"
   },
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
