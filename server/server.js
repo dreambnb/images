@@ -2,24 +2,43 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const redis = require('redis');
+const responseTime = require('response-time');
 
 const db = require('./database/index.js');
 
 const app = express();
+const client = redis.createClient();
 const port = process.env.PORT || 8080;
 
+client.on('error', function (err) {
+  console.log(err);
+});
+
 app.use(cors());
+app.use(responseTime());
 
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/images/:location_id', (req, res) => {
-  db.get(req.params.location_id, (err, results) => {
-    if (err) {
-      res.writeHead(404, {'Content-Type': 'text/plain'});
-      res.end(err);
-    } else {
+  let locationId = req.params.location_id;
+  client.get(locationId, (err, results) => {
+    if (results) {
+      console.log('found');
+      console.log(typeof results);
       res.writeHead(200, {'Content-Type': 'application/json'});
-      res.end(JSON.stringify(results));
+      res.end(results);
+    } else {
+      db.get(locationId, (err, results) => {
+        if (err) {
+          res.writeHead(404, {'Content-Type': 'text/plain'});
+          res.end(err);
+        } else {
+          client.setex(locationId, 120, JSON.stringify(results));
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          res.end(JSON.stringify(results));
+        }
+      });
     }
   });
 });
