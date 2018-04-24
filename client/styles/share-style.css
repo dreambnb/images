@@ -27,10 +27,10 @@
 }
 
 .invisible-button {
-  background: rgba(0,0,0,0);
-  border: 0px;
-  outline: none;
-  cursor: pointer;
+  background: rgba(0,0,0,0)!important;
+  border: 0px !important;
+  outline: none !important;
+  cursor: pointer !important;
   font-size: 15px;
   color: #484848;
   font-weight: 100;
