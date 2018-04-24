@@ -9,8 +9,8 @@
   },
   "scripts": {
     "start": "node server/server.js",
-    "build": "webpack -d",
-    "dev:client": "webpack -d --watch",
+    "build": "webpack -p",
+    "dev:client": "webpack -p --watch",
     "dev:server": "nodemon server/server.js",
     "debug": "nodemon --inspect server/server.js",
     "test": "jest -e --forceExit --verbose --updateSnapshot --coverage",
@@ -29,7 +29,9 @@
     "react-dom": "^16.3.1",
     "react-slick": "^0.23.1",
     "react-transition-group": "^2.3.1",
-    "request": "^2.85.0"
+    "redis": "^2.8.0",
+    "request": "^2.85.0",
+    "response-time": "^2.3.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
