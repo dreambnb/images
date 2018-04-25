@@ -1,11 +1,17 @@
-var path = require('path');
-var SRC_DIR = path.join(__dirname, '/client');
-var DIST_DIR = path.join(__dirname, '/public');
+const path = require('path');
+require('dotenv').config();
+
+const SRC_DIR = path.join(__dirname, '/client/src');
+const DIST_DIR = process.env.NODE_ENV === 'production' 
+  ? path.join(__dirname, '/public') 
+  : path.join(__dirname,'/client/dist');
+
+const filename = process.env.NODE_ENV === 'production' ? 'bundle.min.js': 'bundle.js';
 
 module.exports = {
   entry: `${SRC_DIR}/index.js`,
   output: {
-    filename: 'bundle.min.js',
+    filename: filename,
     path: DIST_DIR
   },
   module: {

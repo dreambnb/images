@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from '../components/Modal.jsx';
+import Modal from '../src/components/Modal.jsx';
 
 describe('Testing Modal', () => {
 

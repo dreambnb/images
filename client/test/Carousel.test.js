@@ -1,5 +1,5 @@
 import React from 'react';
-import Carousel from '../components/Carousel.jsx';
+import Carousel from '../src/components/Carousel.jsx';
 import {images3 as images} from './exampleData';
 import sinon from 'sinon';
 

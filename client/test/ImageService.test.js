@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageService from '../components/ImageService.jsx';
+import ImageService from '../src/components/ImageService.jsx';
 import sinon from 'sinon';
 
 import { images3 } from './exampleData.json'

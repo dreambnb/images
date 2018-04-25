@@ -55,6 +55,7 @@ class ImageService extends React.Component {
   }
 
   fetchNewImages(locationId) {
+    console.log(process)
     return axios.get(`http://localhost:8080/images/${locationId}`)
       .then((results) => {
         let allImagesLoaded = results.data.length === 0; //If no images are returned, then there is no point in waiting for images to load
