@@ -22,7 +22,7 @@ coverage
 
 # Compiled bundles (http://nodejs.org/api/addons.html)
 public/bundle.min.js
-dist/bundle.js
+client/dist/bundle.js
 
 # Environment variables
 .env
