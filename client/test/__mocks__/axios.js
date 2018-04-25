@@ -1,8 +1,8 @@
 import { images3, images5 } from '../exampleData.json';
 
-const IMAGES_ENDPOINT_3 = '/images/3';
-const IMAGES_ENDPOINT_5 = '/images/5';
-const NO_IMAGES_ENDPOINT = '/images/NO_IMAGES';
+const IMAGES_ENDPOINT_3 = 'http://localhost:8080/images/3';
+const IMAGES_ENDPOINT_5 = 'http://localhost:8080/images/5';
+const NO_IMAGES_ENDPOINT = 'http://localhost:8080/images/NO_IMAGES';
 
 console.log('axios js used');
 

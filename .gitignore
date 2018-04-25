@@ -24,3 +24,6 @@ coverage
 build/
 dist/
 
+# Config files
+aws_config.js
+config/
