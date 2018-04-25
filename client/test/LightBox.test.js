@@ -1,5 +1,5 @@
 import React from 'react';
-import LightBox from '../components/LightBox.jsx';
+import LightBox from '../src/components/LightBox.jsx';
 import sinon from 'sinon';
 import { images3 as images } from './exampleData.json';
 

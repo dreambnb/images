@@ -1,5 +1,5 @@
 const webpackConfig = require('./webpack.config.js');
-const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('./aws_config.js');
+const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env;
 
 module.exports = function(grunt) {
   grunt.initConfig({
@@ -21,22 +21,6 @@ module.exports = function(grunt) {
         src: '**'
       }
     }
-    // aws_s3: {
-    //   options: {
-    //     bucket: 'fantasybnb-imageservice-assets',
-    //     region: 'us-east-1',
-    //   },
-    //   push: {
-    //     options: {
-    //       accessKeyId: AWS_ACCESS_KEY_ID,
-    //       secretAccessKey: AWS_SECRET_ACCESS_KEY,
-    //       progress: 'progressBar'
-    //     },
-    //     files: [
-    //       {expand: true, cwd: 'build', src: ['build/bundle.min.js'], dest: 'app/', action: 'upload'},
-    //     ]
-    //   }
-    // }
   });
 
   grunt.loadNpmTasks('grunt-webpack');

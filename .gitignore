@@ -20,10 +20,9 @@ coverage
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
-# Compiled Dirs (http://nodejs.org/api/addons.html)
-build/
-dist/
+# Compiled bundles (http://nodejs.org/api/addons.html)
+public/bundle.min.js
+dist/bundle.js
 
-# Config files
-aws_config.js
-config/
+# Environment variables
+.env

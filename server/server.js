@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const redis = require('redis');
 const responseTime = require('response-time');
+require('dotenv').config();
 
 const db = require('./database/index.js');
 
@@ -18,7 +19,9 @@ client.on('error', function (err) {
 app.use(cors());
 app.use(responseTime());
 
-app.use(express.static(path.join(__dirname, '../public')));
+process.env.NODE_ENV === 'production' 
+  ? app.use(express.static(path.join(__dirname, '../public'))) 
+  : app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/images/:location_id', (req, res) => {
   let locationId = req.params.location_id;

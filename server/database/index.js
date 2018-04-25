@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const _ = require('lodash');
 
-const mLabConfig = require('./config/mLab.js');
+const { MLAB_USERNAME, MLAB_PASSWORD } = process.env;
+console.log(process.env.NODE_ENV);
 
-mongoose.connect(`mongodb://${mLabConfig.username}:${mLabConfig.password}@ds241039.mlab.com:41039/fantasybnb`);
+mongoose.connect(`mongodb://${MLAB_USERNAME}:${MLAB_PASSWORD}@ds241039.mlab.com:41039/fantasybnb`);
 
 let imageSchema = mongoose.Schema({
   "location_id": Number,
