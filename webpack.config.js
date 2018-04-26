@@ -1,5 +1,7 @@
 const path = require('path');
 require('dotenv').config();
+console.log(process.env.NODE_ENV);
+console.log(process.env.TEST);
 
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = process.env.NODE_ENV === 'production' 

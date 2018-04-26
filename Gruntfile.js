@@ -26,5 +26,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-webpack');
   grunt.loadNpmTasks('grunt-aws');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.registerTask('default', ['webpack', 's3']);
+  grunt.registerTask('default', ['webpack:prod', 's3']);
 };
