@@ -29,3 +29,6 @@ client/dist/bundle.js
 
 # DockerFile
 DockerFile
+
+# Amazon credentials
+.aws

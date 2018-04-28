@@ -9,6 +9,7 @@ import Share from './Share.jsx';
 import styles from '../styles/image-service-style.css';
 import heart from '../icons/heart.jsx';
 import share from '../icons/share.jsx';
+import spinner from '../icons/spinner.jsx';
 
 class ImageService extends React.Component {
   constructor(props) {
@@ -55,15 +56,22 @@ class ImageService extends React.Component {
   }
 
   fetchNewImages(locationId) {
-    return axios.get(`http://localhost:8080/images/${locationId}`)
-      .then((results) => {
-        let allImagesLoaded = results.data.length === 0; //If no images are returned, then there is no point in waiting for images to load
-        let i = 0;
-        let images = _.forEach(results.data, (image) => {
-          image.index = i;
-          i++;
-        })
+    let url = '';
+    if (process.env.NODE_ENV === 'production') {
+      url = 'http://ec2-18-204-17-249.compute-1.amazonaws.com';
+    } else if (process.env.NODE_ENV === 'development') {
+      url = 'http://localhost:8080';
+    } else {
+      url = 'http://192.168.99.100:8080'; // Because Docker for windows is stupid and won't expose port to localhost :(
+    }
+
+    return axios.get(`${url}/images/${locationId}`)
+      .then((result) => {
+        let { locationName, images } = result.data;
+        let allImagesLoaded = images.length === 0; //If no images are returned, then there is no point in waiting for images to load
+    
         this.setState({
+          locationName: locationName,
           images: images,
           didFetch: true,
           allImagesLoaded: allImagesLoaded
@@ -109,7 +117,7 @@ class ImageService extends React.Component {
   }
 
   determineModalContent() {
-    let {images, curImageIndex, modalChild} = this.state;
+    let {images, curImageIndex, modalChild, locationName} = this.state;
     switch (modalChild) {
       case 'LightBox':
         return (
@@ -132,6 +140,7 @@ class ImageService extends React.Component {
           <Share
             key="Share"
             closeModal={this.closeModal}
+            locationName={locationName}
           />
         );
     }
@@ -144,7 +153,16 @@ class ImageService extends React.Component {
     return (
       <div className={styles['main-image']}>
         <div>
-          {!allImagesLoaded ? <div className={styles['background']}><h1>Loading...</h1></div>
+          {!allImagesLoaded 
+          ? <div className={styles['background']} style={{textAlign: 'center'}}>
+              <div style={{
+                position: 'relative',
+                display: 'inline-block',
+                transform: 'translateY(250%)'
+              }}>
+                {spinner}
+              </div>
+            </div>
           : images.length === 0 
               ? <div id="no-images" className={styles['background']}><h1>The owner has not posted any pictures of this place yet!</h1></div>
               : <div id="background" ref={background => (this.background = background)} 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const embedIcon = 
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 502.664 502.664" style={{enableBackground: 'new 0 0 502.664 502.664'}} width="50px" height="50px">
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 502.664 502.664" style={{enableBackground: 'new 0 0 502.664 502.664'}} width="18px" height="18px">
     <g>
       <g>
         <path d="M153.821,358.226L0,274.337v-46.463l153.821-83.414v54.574L46.636,250.523l107.185,53.431    C153.821,303.954,153.821,358.226,153.821,358.226z" fill="#484848"/>

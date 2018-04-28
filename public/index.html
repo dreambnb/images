@@ -12,11 +12,10 @@
   <body>
     <div id="image-service">
     </div>
-    <script src="bundle.js"></script>
+    <script src="bundle.min.js"></script>
     <script>
-      var locationId = window.location.pathname.split('/')[1];
       ReactDOM.render(
-        React.createElement(ImageService, {locationId: locationId}),
+        React.createElement(ImageService, {locationId: 2}),
         document.getElementById('image-service')
       )
     </script>
