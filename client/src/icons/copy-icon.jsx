@@ -1,7 +1,7 @@
 import React from 'react';
 
 const copyIcon = 
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Capa_1" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 748 748" style={{enableBackground: 'new 0 0 748 748'}}>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Capa_1" x="0px" y="0px" width="18px" height="18px" viewBox="0 0 748 748" style={{enableBackground: 'new 0 0 748 748'}}>
     <g>
       <g>
         <polygon points="680,646 680,0 170,0 170,68 612,68 612,646   " fill="#484848"/>

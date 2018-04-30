@@ -4,56 +4,60 @@ const cors = require('cors');
 const path = require('path');
 const redis = require('redis');
 const responseTime = require('response-time');
+const request = require('request');
 require('dotenv').config();
 
 const db = require('./database/index.js');
 
+console.log('Updated server.js');
 const app = express();
-const client = redis.createClient();
+const host = process.env.NODE_ENV === 'production' ? '172.17.0.2' : '127.0.0.1';
+const client = redis.createClient('6379', host);
 const port = process.env.PORT || 8080;
 
 client.on('error', function (err) {
   console.log(err);
 });
 
+client.on('connect', function () {
+  console.log('Client is connected to redis server');
+});
+
 app.use(cors());
 app.use(responseTime());
 
 process.env.NODE_ENV === 'production' 
-  ? app.use(express.static(path.join(__dirname, '../public'))) 
-  : app.use(express.static(path.join(__dirname, '../client/dist')));
+  ? app.use('/:locationId', express.static(path.join(__dirname, '../public'))) 
+  : app.use('/:locationId', express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/images/:location_id', (req, res) => {
   let locationId = req.params.location_id;
-  db.get(locationId, (err, results) => {
-    if (err) {
-      res.writeHead(404, {'Content-Type': 'text/plain'});
-      res.end(err);
-    } else {
-      client.setex(locationId, 120, JSON.stringify(results));
+  client.get(locationId, (err, result) => {
+    if (result) {
+      console.log('found');
+      console.log(typeof result);
       res.writeHead(200, {'Content-Type': 'application/json'});
-      res.end(JSON.stringify(results));
+      res.end(result);
+    } else {
+      db.get(locationId, (err, images) => {
+        if (err) {
+          res.writeHead(404, {'Content-Type': 'text/plain'});
+          res.end(err);
+        } else {
+          request({
+            method: 'GET',
+            uri: `http://ec2-54-172-248-16.compute-1.amazonaws.com/booking/${locationId}`, // Fetch from Mo's server for location name
+          }, (err, booking_res, body) => {
+            let locationName = JSON.parse(body)['room_name'];
+            let result = {locationName: locationName, images: images};
+            client.setex(locationId, 120, JSON.stringify(result));
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify(result));
+          });
+        }
+      });
     }
   });
-  // client.get(locationId, (err, results) => {
-  //   if (results) {
-  //     console.log('found');
-  //     console.log(typeof results);
-  //     res.writeHead(200, {'Content-Type': 'application/json'});
-  //     res.end(results);
-  //   } else {
-  //     db.get(locationId, (err, results) => {
-  //       if (err) {
-  //         res.writeHead(404, {'Content-Type': 'text/plain'});
-  //         res.end(err);
-  //       } else {
-  //         client.setex(locationId, 120, JSON.stringify(results));
-  //         res.writeHead(200, {'Content-Type': 'application/json'});
-  //         res.end(JSON.stringify(results));
-  //       }
-  //     });
-  //   }
-  // });
 });
 
 app.listen(port, () => {

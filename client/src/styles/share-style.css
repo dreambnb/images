@@ -4,11 +4,12 @@
   height: 100%;
   width: 100%;
   overflow: scroll;
+  font-family: 'Circular', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .share-page {
   height: 700px;
-  width: 420px; /*Totally unintentional*/
+  width: 380px;
   margin: auto;
   margin-top: 60px;
   margin-bottom: 60px;
@@ -21,9 +22,9 @@
 
 .content {
   height: 640px;
-  width: 300px;
+  width: 340px;
   margin: auto;
-  transform: translateY(60px);
+  transform: translateY(30px);
 }
 
 .invisible-button {
@@ -31,7 +32,52 @@
   border: 0px !important;
   outline: none !important;
   cursor: pointer !important;
+}
+
+.clickable-link {
+  composes: invisible-button;
+  font-size: 20px;
+  color: #008489;
+  text-decoration: none !important;
+}
+
+.clickable-link:hover {
+  text-decoration-line: underline !important;
+}
+
+.close-button {
+  composes: invisible-button;
+  margin-top: 20px;
+  margin-left: 20px;
   font-size: 15px;
-  color: #484848;
+  color: rgba(118,118,118,1);
   font-weight: 100;
+}
+
+.list-entry {
+  height: 20px !important;
+  width: 100%;
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+  border-bottom: 1px solid #DBDBDB !important;
+}
+
+.list-entry-first {
+  composes: list-entry;
+  border-top: 1px solid #DBDBDB !important;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 900;
+  margin: 0px;
+  margin-bottom: 3px;
+}
+
+.description {
+  margin: 0px !important;
+  word-wrap: break-word !important;
+  font-size: 15px !important;
+  font-weight: 300 !important;
+  margin-bottom: 20px !important;
 }
