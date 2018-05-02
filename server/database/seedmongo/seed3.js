@@ -43,7 +43,7 @@ const seeder = () => {
       console.log(err);
     } else {
       const imgSrcs = Contents;
-      for (let i = 750; i < 1000; i++) {
+      for (let i = 500; i < 750; i++) {
         const images = [];
         for (let j = 0; j < 10000; j++) {
           const newImage = {
@@ -66,8 +66,8 @@ const seeder = () => {
           };
           images.push(JSON.stringify(newImage));
         }
-        fs.appendFileSync(path.join(__dirname, '/images4.json'), images.join('\n') + '\n');
-        console.log(`Batch ${i + 1} inserted`)
+        fs.appendFileSync(path.join(__dirname, '../jsonmongo/images3.json'), images.join('\n') + '\n');
+        console.log(`Batch ${i} inserted`)
       }
       console.log('All Done!');
     }

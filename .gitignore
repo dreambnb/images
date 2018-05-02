@@ -35,4 +35,5 @@ DockerFile
 config
 
 # image files
-server/database/seed/*.json
+server/database/jsonmongo/*.json
+server/database/jsonpostgres/*.json
