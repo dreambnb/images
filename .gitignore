@@ -35,4 +35,4 @@ DockerFile
 config
 
 # image files
-server/database/*.json
+server/database/seed/*.json

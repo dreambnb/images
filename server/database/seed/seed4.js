@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const https = require('https');
 const axios = require('axios');
 const fs = require('fs');
-const { Image } = require('./index');
+const path = require('path');
 
-const awsConfig = require('./config/aws.js');
+const { Image } = require('../index');
+const awsConfig = require('../config/aws.js');
 
 AWS.config = new AWS.Config();
 AWS.config.accessKeyId = awsConfig.accessKeyId;
@@ -42,7 +43,7 @@ const seeder = () => {
       console.log(err);
     } else {
       const imgSrcs = Contents;
-      for (let i = 500; i < 750; i++) {
+      for (let i = 750; i < 1000; i++) {
         const images = [];
         for (let j = 0; j < 10000; j++) {
           const newImage = {
@@ -65,8 +66,8 @@ const seeder = () => {
           };
           images.push(JSON.stringify(newImage));
         }
-        fs.appendFileSync('./images3.json', images.join('\n') + '\n');
-        console.log(`Batch ${i} inserted`)
+        fs.appendFileSync(path.join(__dirname, '/images4.json'), images.join('\n') + '\n');
+        console.log(`Batch ${i + 1} inserted`)
       }
       console.log('All Done!');
     }
