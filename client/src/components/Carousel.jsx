@@ -11,10 +11,10 @@ class Carousel extends React.Component {
   goToIndex(curImageIndex, images) {
     if (curImageIndex <= 3) {
       this.slider.slickGoTo(0);
-    } else if (curImageIndex > images.length-4) {
-      this.slider.slickGoTo(images.length-7);
+    } else if (curImageIndex > images.length - 4) {
+      this.slider.slickGoTo(images.length - 7);
     } else {
-      this.slider.slickGoTo(curImageIndex-3);
+      this.slider.slickGoTo(curImageIndex - 3);
     }
   }
 

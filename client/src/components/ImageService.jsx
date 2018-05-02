@@ -50,9 +50,9 @@ class ImageService extends React.Component {
     allImagesLoaded = imageCount === images.length;
 
     this.setState({
-      imageCount: imageCount,
-      allImagesLoaded: allImagesLoaded
-    })
+      imageCount,
+      allImagesLoaded,
+    });
   }
 
   fetchNewImages(locationId) {
@@ -66,8 +66,8 @@ class ImageService extends React.Component {
     }
 
     return axios.get(`${url}/images/${locationId}`)
-      .then((result) => {
-        let { locationName, images } = result.data;
+      .then(({ data }) => {
+        let { locationName, images } = data;
         let allImagesLoaded = images.length === 0; //If no images are returned, then there is no point in waiting for images to load
     
         this.setState({
@@ -75,7 +75,7 @@ class ImageService extends React.Component {
           images: images,
           didFetch: true,
           allImagesLoaded: allImagesLoaded
-        })
+        });
       })
       .catch((err) => {
         console.error(err);
@@ -94,7 +94,7 @@ class ImageService extends React.Component {
     this.setState({
       openModal: true,
       modalChild: modalChild
-    })
+    });
   }
 
   closeModal() {
@@ -102,7 +102,7 @@ class ImageService extends React.Component {
 
     this.setState({
       openModal: false
-    })
+    });
   }
 
   changeIndex(index) {
