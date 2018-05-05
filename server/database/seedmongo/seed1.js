@@ -4,6 +4,7 @@ const https = require('https');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
+const faker = require('faker');
 
 const { Image } = require('../index');
 const awsConfig = require('../config/aws.js');
@@ -43,20 +44,21 @@ const seeder = () => {
       console.log(err);
     } else {
       const imgSrcs = Contents;
-      console.time('Seeding');
+      console.time('Time to seed');
       
-      for (let i = 0; i < 250; i++) {
+      for (let i = 0; i < 2; i++) {
         const images = [];
+        console.log(imgSrcs[0].Key)
         for (let j = 0; j < 10000; j++) {
           const newImage = {
             location_id: (i + 1) * (j + 1),
-            location_name: 'Your Grandmother\'s basement',
+            location_name: faker.address(),
             images: [
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)],
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)],
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)],
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)],
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)],
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
             ],
             caption: [
               generateRandomCaption(),
@@ -71,7 +73,7 @@ const seeder = () => {
         fs.appendFileSync(path.join(__dirname,'../jsonmongo/images1.json'), images.join('\n') + '\n');
         console.log(`Batch ${i} inserted`)
       }
-      console.timeEnd('Seeding Complete');
+      console.timeEnd('Time to seed');
     }
   });
 }
