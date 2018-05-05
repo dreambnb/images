@@ -43,18 +43,18 @@ const seeder = () => {
       console.log(err);
     } else {
       const imgSrcs = Contents;
-      for (let i = 500; i < 750; i++) {
+      for (let i = 750; i < 1000; i++) {
         const images = [];
         for (let j = 0; j < 10000; j++) {
           const newImage = {
-            location_id: (i + 1) * (j + 1),
+            location_id: (i * 10000) + (j + 1),
             location_name: 'Your Grandmother\'s basement',
             images: [
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)],
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)],
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)],
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)],
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)],
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
             ],
             caption: [
               generateRandomCaption(),
@@ -66,8 +66,8 @@ const seeder = () => {
           };
           images.push(JSON.stringify(newImage));
         }
-        fs.appendFileSync(path.join(__dirname, '../jsonmongo/images3.json'), images.join('\n') + '\n');
-        console.log(`Batch ${i} inserted`)
+        fs.appendFileSync(path.join(__dirname, './jsonmongo/images4.json'), images.join('\n') + '\n');
+        console.log(`Batch ${i + 1} inserted`)
       }
       console.log('All Done!');
     }
