@@ -47,14 +47,14 @@ const seeder = () => {
         const images = [];
         for (let j = 0; j < 10000; j++) {
           const newImage = {
-            location_id: (i + 1) * (j + 1),
+            location_id: (i * 10000) + (j + 1),
             location_name: 'Your Grandmother\'s basement',
             images: [
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)].Key,
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)].Key,
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)].Key,
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)].Key,
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
             ],
             caption: [
               generateRandomCaption(),

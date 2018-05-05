@@ -46,12 +46,11 @@ const seeder = () => {
       const imgSrcs = Contents;
       console.time('Time to seed');
       
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 250; i++) {
         const images = [];
-        console.log(imgSrcs[0].Key)
         for (let j = 0; j < 10000; j++) {
           const newImage = {
-            location_id: (i + 1) * (j + 1),
+            location_id: (i * 10000) + (j + 1),
             location_name: faker.address.streetAddress(),
             images: [
               imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
