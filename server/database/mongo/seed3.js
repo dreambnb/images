@@ -4,7 +4,6 @@ const https = require('https');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
-const faker = require('faker');
 
 const { Image } = require('../index');
 const awsConfig = require('../config/aws.js');
@@ -15,7 +14,7 @@ AWS.config.secretAccessKey = awsConfig.secretAccessKey;
 AWS.config.region = awsConfig.region;
 const s3 = new AWS.S3();
 
-const parseLocationId = function(key) {
+const parseLocationId = function (key) {
   const id = key.split('.')[0];
   let locationId = id.split('-');
   locationId = locationId[locationId.length - 1];
@@ -31,34 +30,31 @@ const adjectives = ['bombtastic ', 'gorgeous ', 'great ', 'peaceful ', 'spacious
 const nouns = ['neighborhood', 'living room', 'bedroom', 'view', 'kitchen', 'studio'];
 const endings = ['!', '.', ' :]', ' :D', '!!!'];
 
-const generateRandomCaption = function() {
-  return starters[Math.floor(Math.random() * starters.length)] 
-  + adjectives[Math.floor(Math.random() * adjectives.length)]
-  + nouns[Math.floor(Math.random() * nouns.length)] 
-  + endings[(Math.random() * endings.length)];
+const generateRandomCaption = function () {
+  return starters[Math.floor(Math.random() * starters.length)]
+    + adjectives[Math.floor(Math.random() * adjectives.length)]
+    + nouns[Math.floor(Math.random() * nouns.length)]
+    + endings[(Math.random() * endings.length)];
 };
 
 const seeder = () => {
-  s3.listObjectsV2({Bucket: 'dream-bnb'}, async (err, { Contents }) => {
+  s3.listObjectsV2({ Bucket: 'dream-bnb' }, async (err, { Contents }) => {
     if (err) {
       console.log(err);
     } else {
       const imgSrcs = Contents;
-      console.time('Time to seed');
-      
-      for (let i = 0; i < 2; i++) {
+      for (let i = 500; i < 750; i++) {
         const images = [];
-        console.log(imgSrcs[0].Key)
         for (let j = 0; j < 10000; j++) {
           const newImage = {
             location_id: (i + 1) * (j + 1),
-            location_name: faker.address(),
+            location_name: 'Your Grandmother\'s basement',
             images: [
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)].Key,
+              imgSrcs[Math.floor(Math.random() * imgSrcs.length - 1)].Key,
             ],
             caption: [
               generateRandomCaption(),
@@ -70,11 +66,12 @@ const seeder = () => {
           };
           images.push(JSON.stringify(newImage));
         }
-        fs.appendFileSync(path.join(__dirname,'../jsonmongo/images1.json'), images.join('\n') + '\n');
+        fs.appendFileSync(path.join(__dirname, './jsonmongo/images3.json'), images.join('\n') + '\n');
         console.log(`Batch ${i} inserted`)
       }
-      console.timeEnd('Time to seed');
+      console.log('All Done!');
     }
   });
 }
+
 seeder();
