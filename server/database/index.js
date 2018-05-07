@@ -1,31 +1,27 @@
 const mongoose = require('mongoose');
-const _ = require('lodash');
+const { handleError } = require('../helpers');
 mongoose.Promise = global.Promise;
-
-console.log(process.env.NODE_ENV);
 
 mongoose.connect(`mongodb://localhost:27017/images`);
 
-let imageSchema = mongoose.Schema({
+const imageSchema = mongoose.Schema({
   'location_id': { type: Number, required: true, unique: true },
   'location_name': String,
   'images': Array,  
   'captions': Array, 
 }, { timestamps: true });
 
-let Image = mongoose.model('Image', imageSchema);
+const Image = mongoose.model('image', imageSchema, 'images');
 
-let get = function(locationId, cb) {
-  Image.find({ 'location_id': locationId}).exec()
-    .then((results) => {
-      cb(null, results); 
-    })
-    .catch((err) => {
-      cb(err, null);
-    });
+const getLocationId = (locationId) => {
+  return Image.find({ 'location_id': locationId }, (error, results) => {
+    if (error) handleError(error);
+    console.log(results);
+    return results;
+  });
 };
 
 module.exports = {
   Image,
-  get,
+  getLocationId,
 };

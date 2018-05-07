@@ -37,3 +37,5 @@ config
 # image files
 server/database/jsonmongo/*.json
 server/database/jsonpostgres/*.json
+
+.eslintrc.js

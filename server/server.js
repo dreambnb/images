@@ -7,7 +7,8 @@ const responseTime = require('response-time');
 const request = require('request');
 require('dotenv').config();
 
-const db = require('./database/index.js');
+const db = require('./database/index');
+const { handleError } = require('./helpers');
 
 console.log('Updated server.js');
 const app = express();
@@ -31,32 +32,31 @@ process.env.NODE_ENV === 'production'
   : app.use('/:locationId', express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/images/:location_id', (req, res) => {
-  let locationId = req.params.location_id;
-  client.get(locationId, (err, result) => {
+  let { location_id } = req.params;
+  
+  client.get(location_id, async (err, result) => {
     if (result) {
-      console.log('found');
-      console.log(typeof result);
-      res.writeHead(200, {'Content-Type': 'application/json'});
+      console.log('found in cache');
+      res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(result);
     } else {
-      db.get(locationId, (err, images) => {
-        if (err) {
-          res.writeHead(404, {'Content-Type': 'text/plain'});
-          res.end(err);
-        } else {
-          request({
-            method: 'GET',
-            uri: `http://ec2-54-172-248-16.compute-1.amazonaws.com/booking/${locationId}`, // Fetch from Mo's server for location name
-          }, (err, booking_res, body) => {
-            let locationName = JSON.parse(body)['room_name'];
-            let result = {locationName: locationName, images: images};
-            client.setex(locationId, 120, JSON.stringify(result));
-            res.writeHead(200, {'Content-Type': 'application/json'});
-            res.end(JSON.stringify(result));
-          });
-        }
-      });
-    }
+      try {
+        // if not in cache, get asset from db
+        const locationData = await db.getLocationId(location_id);
+        console.log('locationData: ', locationData);
+        const responseBody = {
+          locationName: '',
+          images: '',
+        };
+        // add to cache
+        client.setex(locationId, 120, JSON.stringify(result));
+        // write to response
+        // res.writeHead(200, { 'Content-Type': 'application/json' });
+        // res.end(JSON.stringify(result));
+      } catch (error) {
+        handleError(error);
+      }
+    };
   });
 });
 
