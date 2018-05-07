@@ -16,7 +16,6 @@ const Image = mongoose.model('image', imageSchema, 'images');
 const getLocationId = (locationId) => {
   return Image.find({ 'location_id': locationId }, (error, results) => {
     if (error) handleError(error);
-    console.log(results);
     return results;
   });
 };
