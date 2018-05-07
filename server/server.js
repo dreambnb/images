@@ -1,16 +1,15 @@
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const redis = require('redis');
-const responseTime = require('response-time');
 const request = require('request');
 require('dotenv').config();
 
 const db = require('./database/index');
 const { handleError } = require('./helpers');
 
-console.log('Updated server.js');
 const app = express();
 const host = process.env.NODE_ENV === 'production' ? '172.17.0.2' : '127.0.0.1';
 const client = redis.createClient('6379', host);
@@ -21,12 +20,15 @@ client.on('error', function (err) {
   console.log(err);
 });
 
-client.on('connect', function () {
-  console.log('Client is connected to redis server');
-});
+// client.on('connect', function () {
+//   console.log('Client is connected to redis server');
+// });
 
 app.use(cors());
-app.use(responseTime());
+// app.use((req, res, next) => {
+//   console.log(`serving ${req.method} request to ${req.url}`);
+//   next();
+// })
 
 process.env.NODE_ENV === 'production' 
   ? app.use('/:locationId', express.static(path.join(__dirname, '../public'))) 
@@ -53,11 +55,12 @@ app.get('/images/:locationId', (req, res) => {
           location_name,
           images,
         };
+        const stringifyResBody = JSON.stringify(responseBody);
         // add to cache
-        client.setex(location_id, 120, JSON.stringify(responseBody));
+        client.setex(location_id, 120, stringifyResBody);
         // write to response
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify(responseBody));
+        res.end(stringifyResBody);
       } catch (error) {
         handleError(error);
       }
