@@ -35,7 +35,7 @@ const generateRandomCaption = function() {
   return starters[Math.floor(Math.random() * starters.length)] 
   + adjectives[Math.floor(Math.random() * adjectives.length)]
   + nouns[Math.floor(Math.random() * nouns.length)] 
-  + endings[(Math.random() * endings.length)];
+  + endings[Math.floor(Math.random() * endings.length)];
 };
 
 const seeder = () => {
@@ -53,18 +53,30 @@ const seeder = () => {
             location_id: (i * 10000) + (j + 1),
             location_name: faker.address.streetAddress(),
             images: [
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
-              imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
-            ],
-            caption: [
-              generateRandomCaption(),
-              generateRandomCaption(),
-              generateRandomCaption(),
-              generateRandomCaption(),
-              generateRandomCaption(),
+              {
+                src: imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+                caption: generateRandomCaption(),
+              },
+              {
+                src: imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+                caption: generateRandomCaption(),
+              },
+              {
+                src: imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+                caption: generateRandomCaption(),
+              },
+              {
+                src: imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+                caption: generateRandomCaption(),
+              },
+              {
+                src: imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+                caption: generateRandomCaption(),
+              },
+              {
+                src: imgSrcs[Math.floor(Math.random() * imgSrcs.length)].Key,
+                caption: generateRandomCaption(),
+              },
             ],
           };
           images.push(JSON.stringify(newImage));

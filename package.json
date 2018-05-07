@@ -15,9 +15,9 @@
     "debug": "nodemon --inspect server/server.js",
     "test": "jest -e --forceExit --verbose --updateSnapshot --coverage",
     "lint": "eslint ./",
-    "seed:mongo:json": "node server/database/seed/seed1.js & node server/database/seed/seed2.js & node server/database/seed/seed3.js & node server/database/seed/seed4.js;",
-    "seed:mongo:mongo": "mongoimport --db images --collection images --file ./server/database/seed/images1.json & mongoimport --db images --collection images --file ./server/database/seed/images2.json & mongoimport --db images --collection images --file ./server/database/seed/images3.json & mongoimport --db images --collection images --file ./server/database/seed/images4.json",
-    "seed:mongo:delete": "rm server/database/seed/images1.json; rm server/database/seed/images2.json; rm server/database/seed/images3.json; rm server/database/seed/images4.json;"
+    "seed:mongo:json": "node server/database/mongo/seed1.js & node server/database/mongo/seed2.js & node server/database/mongo/seed3.js & node server/database/mongo/seed4.js;",
+    "seed:mongo": "time mongoimport --db images --collection images --file ./server/database/mongo/jsonmongo/images1.json & mongoimport --db images --collection images --file ./server/database/mongo/jsonmongo/images2.json & mongoimport --db images --collection images --file ./server/database/mongo/jsonmongo/images3.json & mongoimport --db images --collection images --file ./server/database/mongo/jsonmongo/images4.json",
+    "seed:mongo:delete": "rm server/database/mongo/jsonmongo/*.json; rm -rf ~/.Trash/*;"
   },
   "dependencies": {
     "aws-sdk": "^2.230.1",
@@ -30,6 +30,7 @@
     "grunt-webpack": "^3.1.1",
     "lodash": "^4.17.5",
     "mongoose": "^5.0.14",
+    "newrelic": "^4.1.0",
     "path": "^0.12.7",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
