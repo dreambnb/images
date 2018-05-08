@@ -25,10 +25,10 @@ client.on('connect', function () {
 });
 
 app.use(cors());
-app.use((req, res, next) => {
-  console.log(`serving ${req.method} request to ${req.url}`);
-  next();
-})
+// app.use((req, res, next) => {
+//   console.log(`serving ${req.method} request to ${req.url}`);
+//   next();
+// })
 
 process.env.NODE_ENV === 'production' 
   ? app.use('/:locationId', express.static(path.join(__dirname, '../public'))) 
@@ -39,7 +39,7 @@ app.get('/images/:locationId', (req, res) => {
   
   client.get(locationId, async (err, result) => {
     if (result) {
-      console.log('found in cache');
+      // console.log('found in cache');
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(result);
     } else {

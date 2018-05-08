@@ -18,7 +18,7 @@
     "seed:mongo:json": "node server/database/seed/seed1.js & node server/database/seed/seed2.js & node server/database/seed/seed3.js & node server/database/seed/seed4.js;",
     "seed:mongo": "mongoimport --db images --collection images --file ./server/database/seed/images1.json & mongoimport --db images --collection images --file ./server/database/seed/images2.json & mongoimport --db images --collection images --file ./server/database/seed/images3.json & mongoimport --db images --collection images --file ./server/database/seed/images4.json",
     "seed:mongo:delete": "rm server/database/seed/images1.json; rm server/database/seed/images2.json; rm server/database/seed/images3.json; rm server/database/seed/images4.json;",
-    "stress": "artillery run ./stressTesting/artillery.yml"
+    "bombard": "artillery run ./stressTesting/artillery.yml"
   },
   "dependencies": {
     "aws-sdk": "^2.230.1",
