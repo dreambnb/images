@@ -1,0 +1,22 @@
+config:
+  target: "http://localhost:8080"
+  phases:
+    - duration: 60
+      arrivalRate: 1
+    # - duration: 120
+    #   arrivalRate: 5
+    #   rampTo: 50
+    # - duration: 600
+    #   arrivalRate: 50
+  # payload:
+  #   path: "locationids.csv"
+  #   fields:
+  #     - "location_id"
+scenarios:
+  - name: "Peruse location"
+    flow:
+      - get:
+          url: "/images/1"
+      # - get:
+      #     url: "/images/{{location_id}}"
+      # - log: "Current enviroment is set to {{$environment}}"

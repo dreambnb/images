@@ -20,15 +20,15 @@ client.on('error', function (err) {
   console.log(err);
 });
 
-// client.on('connect', function () {
-//   console.log('Client is connected to redis server');
-// });
+client.on('connect', function () {
+  console.log('Client is connected to redis server');
+});
 
 app.use(cors());
-// app.use((req, res, next) => {
-//   console.log(`serving ${req.method} request to ${req.url}`);
-//   next();
-// })
+app.use((req, res, next) => {
+  console.log(`serving ${req.method} request to ${req.url}`);
+  next();
+})
 
 process.env.NODE_ENV === 'production' 
   ? app.use('/:locationId', express.static(path.join(__dirname, '../public'))) 
@@ -56,9 +56,7 @@ app.get('/images/:locationId', (req, res) => {
           images,
         };
         const stringifyResBody = JSON.stringify(responseBody);
-        // add to cache
         client.setex(location_id, 120, stringifyResBody);
-        // write to response
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(stringifyResBody);
       } catch (error) {
