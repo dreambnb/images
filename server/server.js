@@ -20,9 +20,9 @@ client.on('error', function (err) {
   console.log(err);
 });
 
-// client.on('connect', function () {
-//   console.log('Client is connected to redis server');
-// });
+client.on('connect', function () {
+  console.log('Client is connected to redis server');
+});
 
 app.use(cors());
 // app.use((req, res, next) => {
@@ -39,7 +39,7 @@ app.get('/images/:locationId', (req, res) => {
   
   client.get(locationId, async (err, result) => {
     if (result) {
-      console.log('found in cache');
+      // console.log('found in cache');
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(result);
     } else {
@@ -56,9 +56,7 @@ app.get('/images/:locationId', (req, res) => {
           images,
         };
         const stringifyResBody = JSON.stringify(responseBody);
-        // add to cache
         client.setex(location_id, 120, stringifyResBody);
-        // write to response
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(stringifyResBody);
       } catch (error) {

@@ -39,3 +39,8 @@ server/database/jsonmongo/*.json
 server/database/jsonpostgres/*.json
 
 .eslintrc.js
+
+newrelic.js
+newrelic_agent.log
+
+stressTesting/*.csv
