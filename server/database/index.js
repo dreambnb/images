@@ -20,7 +20,19 @@ const getLocationId = (locationId) => {
   });
 };
 
+const addNewImage = (locationId, newImage) => {
+  Image.findOneAndUpdate(
+    { 'location_id': locationId},
+    { $push: { "images": newImage } },
+    { upsert: true, new: true },
+    (error, model) => {
+      if (error) handleError(error);
+    }
+  );
+};
+
 module.exports = {
   Image,
   getLocationId,
+  addNewImage,
 };
