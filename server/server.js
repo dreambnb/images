@@ -8,16 +8,16 @@ const request = require('request');
 require('dotenv').config();
 
 const handlers = require('./routeHandlers');
+const { sendHTML } = require('./render');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(bodyParser.json());
 app.use(cors());
-
-process.env.NODE_ENV === 'production' 
-  ? app.use('/:locationId', express.static(path.join(__dirname, '../public'))) 
-  : app.use('/:locationId', express.static(path.join(__dirname, '../client/dist')));
+ 
+app.use('/:locationId', express.static(path.join(__dirname, '../client/dist')));
+app.use('/html/:locationId', sendHTML);
 
 app.get('/images/:locationId', handlers.get);
 app.post('/images/:locationId', handlers.post);
