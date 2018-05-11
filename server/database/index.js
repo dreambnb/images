@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const { handleError } = require('../helpers');
 mongoose.Promise = global.Promise;
 
-mongoose.connect(`mongodb://localhost:27017/images`);
+// mongoose.connect(`mongodb://localhost:27017/images`);
+mongoose.connect('mongodb://mongo/Reservations');
 
 const imageSchema = mongoose.Schema({
   'location_id': { type: Number, required: true, unique: true },
