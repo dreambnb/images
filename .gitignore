@@ -35,12 +35,13 @@ DockerFile
 config
 
 # image files
-server/database/jsonmongo/*.json
-server/database/jsonpostgres/*.json
+server/database/seed/**/*.json
+server/database/**/*.json
 
 .eslintrc.js
 
 newrelic.js
 newrelic_agent.log
 
+stressTesting/*.json
 stressTesting/*.csv

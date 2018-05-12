@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const { handleError } = require('../helpers');
 mongoose.Promise = global.Promise;
 
-mongoose.connect(`mongodb://localhost:27017/images`);
+const host = process.env.MONGO_HOST || 'localhost:27017';
+console.log('process.env.MONGO_HOST: ', process.env.MONGO_HOST)
+// mongoose.connect(`mongodb://localhost:27017/images`);
+mongoose.connect(`mongodb://${host}/images`);
 
 const imageSchema = mongoose.Schema({
   'location_id': { type: Number, required: true, unique: true },
