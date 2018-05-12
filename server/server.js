@@ -7,8 +7,8 @@ const redis = require('redis');
 const request = require('request');
 require('dotenv').config();
 
+require('./database/redis');
 const handlers = require('./routeHandlers');
-const { sendHTML } = require('./render');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cors());
  
 app.use('/:locationId', express.static(path.join(__dirname, '../client/dist')));
-app.use('/html/:locationId', sendHTML);
+app.use('/:locationId', express.static(path.join(__dirname, '../client/public')));
 
 app.get('/images/:locationId', handlers.get);
 app.post('/images/:locationId', handlers.post);

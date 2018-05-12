@@ -1,6 +1,6 @@
 const db = require('./database/index');
 const { handleError } = require('./helpers');
-const { client } = require('./server.js');
+const { client } = require('./database/redis');
 
 const s3Path = 'https://s3-us-west-1.amazonaws.com/dream-bnb/';
 

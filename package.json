@@ -10,14 +10,9 @@
   "scripts": {
     "start": "node server/server.js",
     "build:grunt": "grunt",
-<<<<<<< HEAD
-    "dev:build": "webpack -d --watch",
-    "dev:server": "nodemon server/server.js",
-    "prod:build": "webpack -d --mode=production",
-=======
     "dev:client": "webpack -d --watch",
-    "dev:server": "NODE_ENV=development webpack -w & NODE_ENV=development node server/serverBundle.js",
->>>>>>> closing the book on this way of ssr
+    "dev:server": "webpack --mode=development",
+    "prod:server": "NODE_ENV=production webpack --mode=production",
     "debug": "nodemon --inspect server/server.js",
     "test": "jest -e --forceExit --verbose --updateSnapshot --coverage",
     "lint": "eslint ./",

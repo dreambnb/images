@@ -4,16 +4,15 @@ const nodeExternals = require('webpack-node-externals');
 require('dotenv').config();
 
 const SRC_DIR = path.join(__dirname, '/client/src');
-const DIST_DIR = process.env.NODE_ENV === 'production' 
-  ? path.join(__dirname, '/client/public') 
-  : path.join(__dirname, '/client/dist');
+const DIST_DIR = path.join(__dirname, '/client/dist');
 
-const filename = process.env.NODE_ENV === 'production' ? 'bundle.min.js': 'bundle.js';
+const clientFilename = process.env.NODE_ENV === 'production' ? 'images-bundle.min.js': 'images-bundle.js';
+const serverFilename = process.env.NODE_ENV === 'production' ? 'images-bundle-server.min.js': 'images-bundle-server.js';
 
 const browserConfig = {
   entry: `${SRC_DIR}/browser/index.js`,
   output: {
-    filename: filename,
+    filename: clientFilename,
     path: DIST_DIR
   },
   module: {
@@ -70,10 +69,10 @@ const browserConfig = {
 };
 
 const serverConfig = {
-  entry: `./client/src/server/index.js`,
+  entry: `${SRC_DIR}/browser/index.js`,
   output: {
-    filename: 'serverBundle.js',
-    path: path.join(__dirname, './server/'),
+    filename: serverFilename,
+    path: DIST_DIR,
     libraryTarget: 'commonjs2'
   },
   target: 'node',
@@ -85,8 +84,7 @@ const serverConfig = {
         test: [/\.png$/],
         loader: "file-loader",
         options: {
-          name: "public/media/[name].[ext]",
-          publicPath: url => url.replace(/public/, ""),
+          name: "media/[name].[ext]",
           emit: false
         }
       },
@@ -109,10 +107,7 @@ const serverConfig = {
       {
         test : /\.jsx?/,
         include : SRC_DIR,
-        loader : 'babel-loader',     
-        // query: {
-
-        // },
+        loader : 'babel-loader',
         options: {
           presets: ['react', 'env'],
           sourceMap: true
@@ -137,6 +132,6 @@ const serverConfig = {
 };
 
 module.exports = [
-  // browserConfig,
+  browserConfig,
   serverConfig,
 ];
