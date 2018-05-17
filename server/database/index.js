@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const { handleError } = require('../helpers');
 mongoose.Promise = global.Promise;
+
+const { handleError } = require('../helpers');
 
 const host = process.env.MONGO_HOST || 'localhost:27017';
 

@@ -17,11 +17,8 @@ app.use(bodyParser.json());
 app.use(cors());
  
 app.use('/:locationId', express.static(path.join(__dirname, '../client/dist')));
-app.use('/:locationId', express.static(path.join(__dirname, '../client/public')));
 
 app.get('/images/:locationId', handlers.get);
 app.post('/images/:locationId', handlers.post);
 
-app.listen(PORT, () => {
-  console.log('Listening on port ' + PORT);
-});
+app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
