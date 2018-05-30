@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import _ from 'lodash';
 
 import Modal from './Modal.jsx';
 import LightBox from './LightBox.jsx';
@@ -30,17 +29,18 @@ class ImageService extends React.Component {
     this.changeIndex = this.changeIndex.bind(this);
     this.determineModalContent = this.determineModalContent.bind(this);
   }
-
+  
   componentDidMount() {
+    console.log('hi')
     this.fetchNewImages(this.props.locationId);
   }
-
+  
   componentDidUpdate(prevProps) {
     if (prevProps.locationId !== this.props.locationId) {
       this.fetchNewImages(this.props.locationId);
     }
   }
-
+  
   onImageLoad() {
     let {imageCount, allImagesLoaded, images} = this.state;
     if (imageCount === images.length) {
@@ -48,44 +48,44 @@ class ImageService extends React.Component {
     }
     imageCount++;
     allImagesLoaded = imageCount === images.length;
-
+    
     this.setState({
       imageCount,
       allImagesLoaded,
     });
   }
-
+  
   fetchNewImages(locationId) {
     let url = '';
     if (process.env.NODE_ENV === 'production') {
-      url = 'http://ec2-18-204-17-249.compute-1.amazonaws.com';
+      url = 'http://localhost:8080';
     } else if (process.env.NODE_ENV === 'development') {
       url = 'http://localhost:8080';
     } else {
-      url = 'http://192.168.99.100:8080'; // Because Docker for windows is stupid and won't expose port to localhost :(
+      url = 'http://localhost:8080';
     }
-
-    return axios.get(`${url}/images/${locationId}`)
-      .then(({ data }) => {
-        let { locationName, images } = data;
-        let allImagesLoaded = images.length === 0; //If no images are returned, then there is no point in waiting for images to load
     
-        this.setState({
-          locationName: locationName,
-          images: images,
-          didFetch: true,
-          allImagesLoaded: allImagesLoaded
-        });
-      })
-      .catch((err) => {
-        console.error(err);
+    return axios.get(`${url}/images/${locationId}`)
+    .then(({ data }) => {
+      let { locationName, images } = data;
+      let allImagesLoaded = images.length === 0; //If no images are returned, then there is no point in waiting for images to load
+      
+      this.setState({
+        locationName: locationName,
+        images: images,
+        didFetch: true,
+        allImagesLoaded: allImagesLoaded
       });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
   }
-
+  
   openModal(e) {
     document.body.style.overflow = "hidden";
     let modalChild = 'LightBox';
-  
+    
     if (this.save.contains(e.target)) {
       modalChild = 'Save';
     } else if (this.share.contains(e.target)) {
@@ -96,15 +96,15 @@ class ImageService extends React.Component {
       modalChild: modalChild
     });
   }
-
+  
   closeModal() {
     document.body.style.overflow = "initial";
-
+    
     this.setState({
       openModal: false
     });
   }
-
+  
   changeIndex(index) {
     if (index < 0) {
       index = this.state.images.length-1;
@@ -115,43 +115,43 @@ class ImageService extends React.Component {
       curImageIndex: index
     })
   }
-
+  
   determineModalContent() {
     let {images, curImageIndex, modalChild, locationName} = this.state;
     switch (modalChild) {
       case 'LightBox':
-        return (
-          <LightBox 
-            key="LightBox"
-            images={images} 
-            curImageIndex={curImageIndex} 
-            closeModal={this.closeModal}
-            changeIndex={this.changeIndex}
-          />
-        );
+      return (
+        <LightBox 
+        key="LightBox"
+        images={images} 
+        curImageIndex={curImageIndex} 
+        closeModal={this.closeModal}
+        changeIndex={this.changeIndex}
+        />
+      );
       case 'Save':
-        return (
-          <div>
+      return (
+        <div>
             SAVE
           </div>
         );
-      case 'Share':
+        case 'Share':
         return (
           <Share
-            key="Share"
-            closeModal={this.closeModal}
-            locationName={locationName}
+          key="Share"
+          closeModal={this.closeModal}
+          locationName={locationName}
           />
         );
+      }
     }
-  }
-
-  render() {
-    let {images, imageCount, allImagesLoaded, openModal, curImageIndex, modalChild} = this.state;
-    let imgUrl = images.length > 0 ? images[0].src : null;
     
-    return (
-      <div className={styles['main-image']}>
+    render() {
+      let {images, imageCount, allImagesLoaded, openModal, curImageIndex, modalChild} = this.state;
+      let imgUrl = images.length > 0 ? images[0].src : null;
+      
+      return (
+        <div className={styles['main-image']}>
         <div>
           {!allImagesLoaded 
           ? <div className={styles['background']} style={{textAlign: 'center'}}>

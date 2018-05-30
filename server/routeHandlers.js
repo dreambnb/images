@@ -8,16 +8,16 @@ module.exports = {
   get: (req, res) => {
     let { locationId } = req.params;
 
-    client.get(locationId, async (err, result) => {
+    client.get(locationId, async (error, result) => {
+      if (error) handleError(error);
       if (result) {
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(result);
+        res.status(200).end(result);
       } else {
         try {
           const results = await db.getLocationId(locationId);
           let { location_id, location_name, images } = results[0];
           images = images.map(({ src, caption }) => ({
-            src: s3Path + src,
+            src: `${s3Path}${src}`,
             caption,
           }));
           const responseBody = {
@@ -26,9 +26,8 @@ module.exports = {
             images,
           };
           const stringifyResBody = JSON.stringify(responseBody);
-          client.setex(location_id, 120, stringifyResBody);
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(stringifyResBody);
+          res.status(200).end(stringifyResBody);
+          client.setex(location_id, 1200, stringifyResBody);
         } catch (error) {
           handleError(error);
         }

@@ -1,6 +1,6 @@
 
 const handleError = (error) => {
-  console.log(error);
+  console.trace(error);
 };
 
 module.exports = {

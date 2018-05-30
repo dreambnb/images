@@ -6,8 +6,8 @@ require('dotenv').config();
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
 
-const clientFilename = process.env.NODE_ENV === 'production' ? 'images-bundle.min.js': 'images-bundle.js';
-const serverFilename = process.env.NODE_ENV === 'production' ? 'images-bundle-server.min.js': 'images-bundle-server.js';
+const clientFilename = process.env.NODE_ENV === 'production' ? 'images.min.js': 'images.js';
+const serverFilename = process.env.NODE_ENV === 'production' ? 'images-server.min.js': 'images-server.js';
 
 const browserConfig = {
   entry: `${SRC_DIR}/browser/index.js`,
@@ -36,7 +36,7 @@ const browserConfig = {
             options: {
               sourceMap: true,
               modules: true,
-              localIdentName: '[local]___[hash:base64:5]'
+              localIdentName: '[name]__[local]___[hash:base64:5]'
             }
           }
         ],
@@ -69,11 +69,11 @@ const browserConfig = {
 };
 
 const serverConfig = {
-  entry: `${SRC_DIR}/browser/index.js`,
+  entry: `${SRC_DIR}/server/index.js`,
   output: {
     filename: serverFilename,
     path: DIST_DIR,
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs-module'
   },
   target: 'node',
   devtool: "cheap-module-source-map",
@@ -99,7 +99,7 @@ const serverConfig = {
             options: {
               sourceMap: true,
               modules: true,
-              localIdentName: '[local]___[hash:base64:5]'
+              localIdentName: '[name]__[local]___[hash:base64:5]'
             }
           }
         ],
@@ -109,7 +109,7 @@ const serverConfig = {
         include : SRC_DIR,
         loader : 'babel-loader',
         options: {
-          presets: ['react', 'env'],
+          presets: ['react', 'env', 'es2015'],
           sourceMap: true
         }
       },
