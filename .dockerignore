@@ -7,5 +7,5 @@ test/
 # Environment variables
 .env
 
-newrelic.js
+
 newrelic_agent.log
